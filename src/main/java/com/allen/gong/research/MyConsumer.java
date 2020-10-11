@@ -26,11 +26,12 @@ public class MyConsumer {
     public void start(){
         new Thread(() -> {
             while(!stop){
-                System.out.println("poll message from broker");
-                ConsumerRecords<String, String> records = this.consumer.poll(Duration.ofSeconds(5));
+//                System.out.println("poll message from broker");
+                ConsumerRecords<String, String> records = this.consumer.poll(Duration.ofSeconds(1));
                 for(ConsumerRecord r : records){
                     System.out.println(String.format("[%s: %s]", r.key(), r.value()));
                 }
+                this.consumer.commitSync();
             }
             System.out.println("consumer exits");
         }).start();

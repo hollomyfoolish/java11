@@ -32,7 +32,10 @@ public class MyProducer {
         producer.send(new ProducerRecord<>(IKafkaConstants.TOPIC_NAME, key, value));
     }
 
+
+
     public void stop(){
+
         if(this.producer != null){
             this.producer.close();
         }
